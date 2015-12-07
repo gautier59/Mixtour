@@ -9,4 +9,6 @@ MixTourTestCase.prototype.testInitPlateau = function(){
     console.log(" --- INIT PLATEAU ---");
     monPlateau.init();
     ia.rndPosition();
+    monPlateau.getSizePlateau();
+    monPlateau.addPion(0,0,1,"blanc");
 };
