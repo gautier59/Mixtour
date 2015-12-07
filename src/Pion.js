@@ -17,4 +17,8 @@ var Pion = function(line, column, height, color){
     };
 
     init()
+
+    this.getLine = function() {
+        return _line;
+    }
 };
