@@ -9,6 +9,8 @@ var Plateau = function () {
     var colorIA = "B";
     var listPion = [];
     var playerProgress = "W"; // Par défaut c'est au joueur blanc de commencer
+    var pointPlayer = 0;
+    var pointIA = 0;
 
     this.init = function () {
         plateau = new Array(5);
@@ -113,5 +115,25 @@ var Plateau = function () {
 
     this.getPlayerProgress = function(){
         return playerProgress;
+    };
+
+    this.checkHeightTower = function(line , column){
+        var tower = this.getListPionPosition(line,column);
+        if(tower.length >= 5){
+            this.deleteTower(line,column);
+            // GAGNER JETON HAUT
+        }
+    };
+
+    this.deleteTower = function(line, column){
+        var tower = this.getListPionPosition(line,column);
+        for(var i = 0; i < listPion.length ; i++){
+            for(var j = 0; j < tower.length ; j++){
+                if(listPion[i] == tower[j]){
+                    console.log("SUPPRESSION L:"+listPion[i].line+" C:"+listPion[i].column+" H:"+listPion[i].height+" C:"+listPion[i].color);
+                    listPion.splice(j,1);
+                }
+            }
+        }
     }
 };
