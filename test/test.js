@@ -20,8 +20,18 @@ MixTourTestCase.prototype.testInitPlateau = function() {
     monPlateau.addPion(0, 3, "F");
     monPlateau.viewListPionPlateau();
 
+    monPlateau.addPion(0, 2, monPlateau.getPlayerProgress());
+    console.log(monPlateau.checkHeightTower(0,2));
 
-    monPlateau.viewListPionPosition(1,2);
+    monPlateau.addPion(0, 2, monPlateau.getPlayerProgress());
+    monPlateau.addPion(2, 2, monPlateau.getPlayerProgress());
+    monPlateau.addPion(3, 2, monPlateau.getPlayerProgress());
+
+    console.log(" TEST DELETE ")
+    monPlateau.viewListPionPosition(0,2);
+    monPlateau.deleteTower(0,2);
+    monPlateau.viewListPionPosition(0,2);
+    console.log(" FIN TEST DELETE ");
 
     console.log("");
     console.log(" --- CELLS EMPTY ---");
