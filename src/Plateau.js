@@ -69,6 +69,14 @@ var Plateau = function () {
                 listPionCell.push(listPion[i]);
             }
         }
+        listPionCell.sort(function(a, b) {
+            if (a.height < b.height) //sort string ascending
+                return -1
+            if (a.height > b.height)
+                return 1
+            return 0 //
+        });
+
         console.log("  --- PION PLACE (L:"+line+" C:"+column+") ---");
         console.log("            Number pion:"+listPionCell.length);
         for(var i = 0; i < listPionCell.length ; i++) {
@@ -79,12 +87,26 @@ var Plateau = function () {
 
     this.getListPionPosition = function(line , column) {
         var listPionCell = [];
+        var count = 1;
 
         for (var i = 0; i < listPion.length; i++) {
             if ((listPion[i].line == line) && (listPion[i].column == column)) {
                 listPionCell.push(listPion[i]);
             }
         }
+
+        listPionCell.sort(function(a, b) {
+            if (a.height < b.height) //sort string ascending
+                return -1
+            if (a.height > b.height)
+                return 1
+            return 0 //
+        });
+
+        for (var i = 0; i < listPionCell.length; i++) {
+            console.log(listPionCell[i].height);
+        }
+
         return listPionCell;
     };
 
@@ -106,11 +128,12 @@ var Plateau = function () {
         var listPionTmp = this.getListPionPosition(positionStartLine,positionStartColumn);
         var lstTmp = listPionTmp.slice(positionStartHeight-1, listPionTmp.length+1); //On prend 2 et 3
         for(var i = 0; i < lstTmp.length  ; i++) {
-            lstTmp[i].line = positionEndLine
-            lstTmp[i].column = positionEndColumn
+            lstTmp[i].line = positionEndLine;
+            lstTmp[i].column = positionEndColumn;
+            lstTmp[i].height = this.getListPionPosition(positionEndLine,positionEndColumn).length;
             console.log(lstTmp[i].line + " " + lstTmp[i].column);
         }
-    }
+    };
 
     this.changePlayer = function(){
         if(playerProgress == "W")
@@ -124,4 +147,6 @@ var Plateau = function () {
     this.getPlayerProgress = function(){
         return playerProgress;
     }
+
+
 };
