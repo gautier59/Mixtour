@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Mixtour</title>
+        <link rel="stylesheet" type="text/css" href="../styles/style.css">
+        <script src="../lib/jquery-2.1.4.min.js"></script>
+
+        <script  type="text/javascript">
+            var color = "black";
+            $(document).ready(function() {
+                $.fn.reverse = [].reverse;
+
+                $("td").on("click", "img.preview", function(){
+
+                        if(document.getElementsByClassName("select").length !== 0){
+                            /*Deplacement en cas de selection*/
+                            var parentPion = $(this).parent();
+
+                            $('.select').reverse().each(function(){
+                                $(this).removeClass("select");
+                                parentPion.prepend($(this));
+                            });
+                            $(this).parent().children(".preview").remove();
+
+
+
+                        }else{
+                            /*Pose classique d'un pion*/
+                            var numberPicture = 0;
+
+                            $(this).parent().children(".pion").each(function() {
+                                numberPicture=numberPicture+1;
+
+                            });
+
+                            $( this).parent().prepend( "<img class='pion' style='bottom:-"+10*numberPicture+"px; z-index:"+numberPicture+";' src='../pictures/"+color+".png'/>" );
+                            $( this).parent().children(".preview").remove();
+                        }
+                });
+                /*gestion de la selection et deselection*/
+                $(".pion").click(function () {
+                    var parentPion = $(this).parent();
+                    if($(this).hasClass( "select" )){
+                        $( this ).removeClass( "select" );
+                        $( this).nextAll().each(function(){
+
+                                $( this ).removeClass( "select" );
+
+                        });
+                        console.log($(this).parent().find('.select').length);
+                        if( $(this).parent().find('.select').length === 0){
+                            $( this ).parent().prepend( "<img class='preview' id='preview' src='../pictures/blackPreview.png'/>" );
+                        }
+                    }else{
+
+                        $('.select').each(function(){
+
+                           if( $(this).parent().attr('id') !== parentPion.attr('id')){
+                               $(this).removeClass("select");
+                           }
+                        });
+                        $( this).prevAll().each(function(){
+                            if($(this).attr('id') !== "preview") {
+                                $(this).addClass("select");
+                            }
+                        });
+                        $( this ).addClass( "select" );
+                        $( this).parent().children(".preview").remove();
+                    }
+
+
+
+                });
+                /*ecartement des pions pour aider la selection*/
+                $( "td" ).mouseover(function() {
+                    $(this).find('.pion').each(function(){
+
+                        $(this).css('bottom', '0px');
+
+                    });
+                });
+                /*affichage du preview*/
+                $( "td" ).mouseenter(function() {
+
+                    if( $(this).find('.select').length === 0){
+                        $( this ).prepend( "<img class='preview' id='preview' src='../pictures/blackPreview.png'/>" );
+                    }
+
+                });
+                /*desaffichage du preview et suppression des écartements pour la selection*/
+                $( "td" ).mouseleave(function() {
+                    $( this ).children(".preview").remove();
+                    var bottomPion = 0;
+                    $(this).find('.pion').each(function(){
+
+                        $(this).css('bottom', ''+bottomPion+'px');
+                        bottomPion = bottomPion +10;
+
+                    });
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+
+    <table>
+        <tr id="L0">
+            <td id="L0C0"><img class='pion'  style='bottom:-20px; z-index:2;' src='../pictures/white.png' /><img style='bottom:-10px; z-index:1;' class='pion' src='../pictures/white.png' /><img style='bottom:-0px; z-index:0;' class='pion' src='../pictures/black.png' /></td>
+            <td id="L0C1"></td>
+            <td id="L0C2"></td>
+            <td id="L0C3"></td>
+            <td id="L0C4"></td>
+        </tr>
+        <tr id="L1">
+            <td id="L1C0"><img style='bottom:-10px; z-index:1;' class='pion' src='../pictures/white.png' /><img style='bottom:-0px; z-index:0;' class='pion' src='../pictures/black.png' /></td>
+            <td id="L1C1"></td>
+            <td id="L1C2"></td>
+            <td id="L1C3"></td>
+            <td id="L1C4"></td>
+        </tr>
+        <tr id="L2">
+            <td id="L2C0"></td>
+            <td id="L2C1"></td>
+            <td id="L2C2"></td>
+            <td id="L2C3"></td>
+            <td id="L2C4"></td>
+        </tr>
+        <tr id="L3">
+            <td id="L3C0"></td>
+            <td id="L3C1"></td>
+            <td id="L3C2"></td>
+            <td id="L3C3"></td>
+            <td id="L3C4"></td>
+        </tr>
+        <tr id="L4">
+            <td id="L4C0"></td>
+            <td id="L4C1"></td>
+            <td id="L4C2"></td>
+            <td id="L4C3"></td>
+            <td id="L4C4"></td>
+        </tr>
+    </table>
+    </body>
+
+</html>
