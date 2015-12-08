@@ -8,7 +8,7 @@ var Plateau = function () {
     var colorPlayer = "W";
     var colorIA = "B";
     var listPion = [];
-    var playerProgress = 1;
+    var playerProgress = "W"; // Par défaut on prend
 
     this.init = function () {
         plateau = new Array(5);
@@ -40,6 +40,7 @@ var Plateau = function () {
         var nbPionCell = this.getListPionPosition(line,columns).length;
         var pion = new Pion(line, columns, (nbPionCell + 1), color);
         listPion.push(pion);
+        this.changePlayer();
     };
 
     this.viewListPionPlateau = function(){
@@ -94,5 +95,16 @@ var Plateau = function () {
         return arrayCellEmpty;
     };
 
+    this.changePlayer = function(){
+        if(playerProgress == "W")
+            playerProgress = "B";
+        else
+            playerProgress = "W";
 
+        console.log("C'est au tour du joueur :"+playerProgress);
+    };
+
+    this.getPlayerProgress = function(){
+        return playerProgress;
+    }
 };
