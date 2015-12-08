@@ -3,17 +3,12 @@
  */
 
 var Pion = function(line, column, height, color){
-
-    /*var _line;
-    var _column;
-    var _height;
-    var _color;*/
     this.line = line;
     this.column = column;
     this.height = height;
     this.color = color;
 
-    console.log("--CLASSE Instatiation d'un pion en    line:"+line+" Column:"+column+ " height:"+height+ " color:"+color);
+    console.log("  --- Creation PION en L:"+line+" C:"+column+ " H:"+height+ " C:"+color);
 
 
     var init = function(line, column,height, color){
@@ -24,6 +19,4 @@ var Pion = function(line, column, height, color){
 
         console.log("INIT Instatiation d'un pion en    line:"+this._line+" Column:"+column+ " height:"+height+ " color:"+color);
     };
-
-    //init(line, column, height, color);
 };

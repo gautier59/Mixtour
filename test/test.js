@@ -11,6 +11,8 @@ MixTourTestCase.prototype.testInitPlateau = function() {
     ///// Paramètre la couleur du joueur Soit W:Blanc ou B:Bleu
     monPlateau.setColorPlayer("W");
 
+    console.log("Le joueur en cour est :"+monPlateau.getPlayerProgress());
+
     console.log("Pion sur le plateau ? : "+monPlateau.pionOnPlateau());
     monPlateau.addPion(0, 0, "W");//1
     monPlateau.addPion(0, 0, "H");//2
@@ -20,6 +22,7 @@ MixTourTestCase.prototype.testInitPlateau = function() {
     monPlateau.addPion(4, 2, "W");
     monPlateau.addPion(4, 2, "W");
     monPlateau.viewListPionPlateau();
+
 
     monPlateau.viewListPionPosition(1,2);
 
