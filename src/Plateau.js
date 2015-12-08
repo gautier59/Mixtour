@@ -8,7 +8,7 @@ var Plateau = function () {
     var colorPlayer = "W";
     var colorIA = "B";
     var listPion = [];
-    var playerProgress = "W"; // Par défaut on prend
+    var playerProgress = "W"; // Par défaut c'est au joueur blanc de commencer
 
     this.init = function () {
         plateau = new Array(5);
@@ -38,9 +38,16 @@ var Plateau = function () {
 
     this.addPion = function(line, columns, color){
         var nbPionCell = this.getListPionPosition(line,columns).length;
-        var pion = new Pion(line, columns, (nbPionCell + 1), color);
-        listPion.push(pion);
-        this.changePlayer();
+        if(nbPionCell == 0) {
+            var pion = new Pion(line, columns, (nbPionCell + 1), color);
+            listPion.push(pion);
+            this.changePlayer();
+            return true;
+        }
+        else{
+            console.log("[ERR] Placement impossible: La case L:"+line+" C:"+columns+" n'est pas vide");
+            return false;
+        }
     };
 
     this.viewListPionPlateau = function(){
