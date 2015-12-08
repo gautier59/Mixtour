@@ -14,6 +14,7 @@ MixTourTestCase.prototype.testInitPlateau = function() {
     console.log("Le joueur en cour est :"+monPlateau.getPlayerProgress());
 
     console.log("Pion sur le plateau ? : "+monPlateau.pionOnPlateau());
+
     monPlateau.addPion(0, 2, monPlateau.getPlayerProgress());
     console.log(monPlateau.checkHeightTower(0,2));
 
@@ -30,4 +31,7 @@ MixTourTestCase.prototype.testInitPlateau = function() {
     console.log("");
     console.log(" --- CELLS EMPTY ---");
     monPlateau.getCellEmpty(); // On recupère les celulles vides
+    monPlateau.movePions(0,0,2,0,1)//Départ en (0;0) on prend les pions à partir de la hauteur 2 et on les déplacenet en (0;1)
+    monPlateau.viewListPionPosition(0,1);
+    monPlateau.viewListPionPosition(0,0);
 };

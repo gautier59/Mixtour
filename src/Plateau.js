@@ -104,6 +104,16 @@ var Plateau = function () {
         return arrayCellEmpty;
     };
 
+    this.movePions = function(positionStartLine, positionStartColumn,positionStartHeight, positionEndLine, positionEndColumn) {
+        var listPionTmp = this.getListPionPosition(positionStartLine,positionStartColumn);
+        var lstTmp = listPionTmp.slice(positionStartHeight-1, listPionTmp.length+1); //On prend 2 et 3
+        for(var i = 0; i < lstTmp.length  ; i++) {
+            lstTmp[i].line = positionEndLine
+            lstTmp[i].column = positionEndColumn
+            console.log(lstTmp[i].line + " " + lstTmp[i].column);
+        }
+    }
+
     this.changePlayer = function(){
         if(playerProgress == "W")
             playerProgress = "B";
