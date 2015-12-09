@@ -26,8 +26,11 @@
 				<li><a href="signup.php"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Inscription</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span>&nbsp;Jouer</a></li>
                 <li><a href="consulter.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Consulter </a></li>
+                <li><a href="rules.php"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;Règles du jeu </a></li>
 			</ul>
 		</div>
 	</div>
 	</nav>
 </div>
+
+
