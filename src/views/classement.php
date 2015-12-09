@@ -5,7 +5,7 @@
     $db = new db();
     $db->loginDb();
    
-    $db->insertUser('','Ramat','Eric','Homme','17/08/1994','Informatique','Eric@hotmail.fr','123456','Site','Client',200);
+   // $db->insertUser('','Ramat','Eric','Homme','17/08/1994','Informatique','Eric@hotmail.fr','123456','Site','Client',200);
     
 ?>
 
