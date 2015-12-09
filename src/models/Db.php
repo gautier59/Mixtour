@@ -27,44 +27,39 @@ class Db
         }
 	}
 
-
-    public function login(){
-
-			/*	$qry=$_db->prepare('SELECT * FROM user
-									WHERE email=? AND password=?');
-				$qry->execute(array($_POST['email'],sha1($_POST['password'])));
-
-				$data=$qry->fetch();
-				if ($_POST['email']!='') {
-					$_SESSION['UserID']=$data['id'];
-					$_SESSION['UserFirstName']=$data['prenom'];
-					$_SESSION['UserLastName']=$data['nom'];
-					$_SESSION['UserEmail']=$_POST['email'];
-					if($_POST['typeUtilisateur']==1){
-						$_SESSION['isAdministrator'] = $_POST['typeUtilisateur'];
-					}
-
-				}else{
-					echo 'Données de connexion invalides !<br/>';
-					echo '<input type="button" value="Réessayer" onClick="self.history.back()">';
-					exit;
-				}
-
-				$qry->closecursor();*/
+    public function login($email,$password){
+        $password = md5($password);
+        $sql = "SELECT * from user WHERE email='$email' AND password='$password'";
+        $query = $this->_db->prepare($sql);  
+      
+        $query->execute();
+        $data = $query->fetch(); 
+      
+        if($data){            
+            if($data['typeUtilisateur'] == "Client")
+                $_SESSION['typeUtilisateur'] = "Client";
+            else
+                $_SESSION['typeUtilisateur'] = "User";
+            
+            return true;
+        }  
+  
+         
     }
 
     public function selectAllUser(){
          $this->_db->exec("SET CHARACTER SET utf8");
-        $qry=$this->_db->prepare('SELECT id,prenom,nom,interets,naissance,email,password FROM user');
+        $qry=$this->_db->prepare('SELECT * FROM user');
         $qry->execute();
         $data=$qry->fetchAll();
         return $data;
     }
 
-    public function insertUser()
+    public function insertUser($id, $nom, $prenom, $sexe, $naissance ,$interets, $email, $password, $inscriptionType, $typeUtilisateur, $points)
     {
-
-        $qry=$_db->prepare('SELECT * FROM user');
+        $password = md5($password);
+        $qry=$this->_db->prepare("INSERT INTO `mixtour`.`user` (`id`, `nom`, `prenom`, `sexe`,`naissance`, `interets`, `email`, `password`, `inscriptionType`, `typeUtilisateur`, `points`) 
+        					VALUES ('', '$nom', '$prenom', '$sexe' ,'$naissance', '$interets', '$email', '$password', '$inscriptionType', '$typeUtilisateur', '$points')");
         $qry->execute();
         $data=$qry->fetchAll();
         return $data;
@@ -83,7 +78,13 @@ class Db
     }
 
 
-
+   public function classementUser(){
+        $this->_db->exec("SET CHARACTER SET utf8");
+        $qry=$this->_db->prepare('SELECT id,prenom,nom,interets,naissance,email,password,points FROM user ORDER BY points desc');
+        $qry->execute();
+        $data=$qry->fetchAll();
+        return $data;
+    }
 
 
 

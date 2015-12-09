@@ -1,14 +1,20 @@
 <html>
 <?php
     include('header.php');
+    include('../models/Db.php');
+    $db = new db();
+    $db->loginDb();
+   
+    $db->insertUser('','Ramat','Eric','Homme','17/08/1994','Informatique','Eric@hotmail.fr','123456','Site','Client',200);
+    
 ?>
 
 
 
 <div id="content">
 <div class="panel panel-primary">
-	<div class="panel-heading"><h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Informations utilisateurs</h3>
-	<div class="pull-right">		
+	<div class="panel-heading"><h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Classement des joueurs</h3>
+	<div class="pull-right">		 
 			Rechercher :		
 				<input type="text" id="rechercher" class="form-control">
 				
@@ -16,7 +22,7 @@
 
 	</div>
 	<div class="panel-body">
-		<div id="infoUser"></div>
+		<div id="classementUser"></div>
 	</div>
 </div>
 </div>
@@ -26,10 +32,8 @@
 
 <script type="text/javascript">
 
-var url = "../models/consulterUser.php";
-
-
-	$("#infoUser").shieldGrid({
+var url = "../models/classementUser.php";
+	$("#classementUser").shieldGrid({
     dataSource: {
         remote: {
             read: {
@@ -38,19 +42,14 @@ var url = "../models/consulterUser.php";
        
             }
         },
-        schema: {
- 
+        schema: { 
             fields: window.orderFields = {
                 "nom": { path: "nom" },
                 "prenom": { path: "prenom" },
-                "sexe": {path:"sexe"},
                 "naissance": { path: "naissance" },
                 "interets": { path: "interets" },
                 "email": { path: "email", type: String },
-                "inscriptionType" : { path: "inscriptionType"},
-                "typeUtilisateur" : {path:"typeUtilisateur"},
-                "points" : {path:"points"},
-                
+                "points" : {path:"points"},               
             }
         },
 
@@ -70,22 +69,13 @@ var url = "../models/consulterUser.php";
     columns: [
         { field: "nom", title: "Nom",  },
         { field: "prenom", title: "Prenom", },
-        { field: "sexe", title:"Sexe"},
-        { field: "naissance", title: "Naissance" },
-        { 
-            field: "interets",
-            title: "Interêts",
-            width:200,
-
-        },
-        { field: "email", title: "Email", width:200 },
-        { field: "inscriptionType", title: "Type d'inscription" },
-        { field: "typeUtilisateur", title: "Type d'utilisateur" },
-        { field: "points", title: "Points"},
-        
+        { field: "naissance", title: "Naissance" , width:100},
+        { field: "interets", title: "Interêts",  },
+        { field: "email", title: "Email" },
+        { field : "points", title:"Points",width:100, attributes:{"text-align":"center"}},        
     ]
 });
-   var dataSource = $("#infoUser").swidget().dataSource,
+   var dataSource = $("#classementUser").swidget().dataSource,
                 input = $("#rechercher"),
                 timeout,
                 value;

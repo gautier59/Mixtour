@@ -1,10 +1,22 @@
 <?php
+    $_SESSION = array();
+
     include('header.php');
-    require('../models/Db.php');
-   /*$db = new Db();
-   if($db->checkConnexion()){
-       location("game.php");
-   }else{*/
+    require('../models/Db.php');            
+    $db = new Db();
+    $login = (isset($_POST['email'])) ? $_POST['email'] : null;
+    $password =  (isset($_POST['password'])) ? $_POST['password'] : null;
+    if($login != null && $password != null){
+        $db->loginDb();
+        $request = $db->login($login,$password);
+            
+        if($request){
+            header('location:game.php');
+        }
+        else{
+            echo "<div id='ErreurPassword' class='alert alert-danger'>Erreur, mot de passe incorrect</div>";
+        }
+    }
 ?>
         <div class="container">
             <div class="contentLeft"><img src="../../pictures/mixto_01.png" alt="mixtour" /></div>
@@ -20,5 +32,12 @@
 	</body>
 </html>
 <?php
-//}
+       
+        
 ?>
+
+<script type="text/javascript">
+    $('#ErreurPassword').fadeOut(5000);
+
+
+</script>
