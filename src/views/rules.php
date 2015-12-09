@@ -2,10 +2,6 @@
     include('header.php');
     require('../models/Db.php');
 
-   /*$db = new Db();
-   if($db->checkConnexion()){
-       location("game.php");
-   }else{*/
 ?>
 <div class="container">
             <div class="contentLeft"><img src="../../pictures/plateau_regles.jpg" alt="mixtour" /></div>
@@ -21,6 +17,3 @@
         </div>
 	</body>
 </html>
-<?php
-//}
-?>
