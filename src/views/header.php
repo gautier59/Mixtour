@@ -24,6 +24,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a href="signup.php"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Inscription</a></li>
+<<<<<<< HEAD
 				<li><a href="game.php"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span>&nbsp;Jouer</a></li>
 				<li><a href="classement.php"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Classement </a></li>
                <?php
@@ -40,8 +41,15 @@
                 <div class="pull-right"><?php 
                 		if(isset($_SESSION['typeUtilisateur']))
                				echo "Bievenue ".$_SESSION['typeUtilisateur']?></div></li>
+=======
+				<li><a href="#"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span>&nbsp;Jouer</a></li>
+                <li><a href="consulter.php"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Consulter </a></li>
+                <li><a href="rules.php"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;Règles du jeu </a></li>
+>>>>>>> fe681b6e5a336b76ae30de2ee7f9469f0eee9647
 			</ul>
 		</div>
 	</div>
 	</nav>
 </div>
+
+
