@@ -187,3 +187,37 @@
         height: 325px;
     }
 }
+
+/* Message erreur */
+.message{
+    text-align: center;
+    width: 1280px;
+    margin: auto;
+}
+
+.pull-right{
+    margin-top: -50px;
+}
+
+/* alignement tableau content */
+h1, th {
+  text-align: center;
+}
+
+.sui-gridheader .sui-headercell {
+  text-align: center;
+}
+
+.sui-grid-core {
+  font-family: Arial, sans-serif;
+}
+
+td.sui-cell{
+    text-align: center;
+}
+
+#ErreurPassword{
+    margin-top: 100px;
+
+    text-align: center;
+}
