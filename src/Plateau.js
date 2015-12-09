@@ -138,6 +138,7 @@ var Plateau = function () {
             console.log("[ERR] Le déplacement est imposible la cellule est VIDE !");
             return false;
         }
+        //this.checkMovePion(positionStartLine,positionStartColumn,positionEndLine,positionEndColumn)
     };
 
     this.changePlayer = function(){
@@ -187,5 +188,28 @@ var Plateau = function () {
         }
     }
 
+    this.checkMovePion = function(startLine, startColumn, endLine, endColumn) {
+        console.log("Taille : " + this.getListPionPosition(endLine,endColumn).length)
+        console.log((endColumn-startColumn))
+        if((endColumn-startColumn) <= this.getListPionPosition(endLine,endColumn).length) {
+            console.log("Distance OK !")
+            if(startLine == endLine) {
+                console.log("Même Ligne");
+                return true;
+            }
 
+            if(startColumn == endColumn) {
+                console.log("Même Colonne");
+                return true;
+            }
+
+            if(Math.abs(startLine-endLine) == Math.abs(startColumn-endColumn) ) {
+                console.log("Même Diagonale");
+                return true;
+            }
+            return false
+        }
+        console.log("Aucune correspondance");
+        return false;
+    }
 };

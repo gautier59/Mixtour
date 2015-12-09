@@ -50,7 +50,18 @@ MixTourTestCase.prototype.testInitPlateau = function() {
 
     console.log("Score Joueur 1:"+ monPlateau.getScorePlayer());
     console.log("Score IA:"+ monPlateau.getScoreIA());
+    
+    monPlateau.addPion(0, 0, "G");//1
 
+    monPlateau.addPion(0, 4, "L");//1
+    monPlateau.addPion(1, 4, "F");//1
+    monPlateau.addPion(2, 4, "V");//1
+    monPlateau.addPion(3, 4, "W");//1
 
+   // monPlateau.movePions(0,0,1,0,4);//Départ en (0;0) on prend les pions à partir de la hauteur 2 et on les déplacenet en (0;1)
+    monPlateau.movePions(3,4,1,0,4)
+    monPlateau.movePions(2,4,1,0,4)
+    monPlateau.movePions(1,4,1,0,4)
 
+    monPlateau.checkMovePion(0,0,0,4);
 };
