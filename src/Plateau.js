@@ -133,7 +133,7 @@ var Plateau = function () {
                         lstTmp[i].height = this.getListPionPosition(positionEndLine, positionEndColumn).length;
                     }
                     this.checkHeightTower(positionEndLine, positionEndColumn);
-                    if (this.comparaCoup(positionStartLine, positionStartColumn, positionEndLine, positionEndColumn, lstTmp.length)) {
+                    if (this.compareCoup(positionStartLine, positionStartColumn, positionEndLine, positionEndColumn, lstTmp.length)) {
                         console.log("[ERR] Le coup est identique au précédent !");
                         return false;
                     } else {
@@ -144,7 +144,6 @@ var Plateau = function () {
                 } else {
                     console.log("[ERR] Le déplacement est imposible mauvaise distance ou direction !");
                     return false;
-
                 }
             }
             else {
@@ -246,15 +245,17 @@ var Plateau = function () {
             lastCoup["nbPions"] = nbPions;
         }
 
-        this.comparaCoup = function (positionStartLine, positionStartColumn, positionEndLine, positionEndColumn, nbPions) {
-            console.log("___Comparaison de coup : ");
-            console.log("___Nouveau coup : Départ : " + positionStartLine + " " + positionStartColumn + " Arrivé : "
-                + positionEndLine + " " + positionEndColumn);
-            console.log("___Ancien coup : Départ : " + lastCoup.startLine + " " + lastCoup.startColumn + " Arrivé : "
-                + lastCoup.endLine + " " + lastCoup.endColumn);
+
+        /*
+            RETURN true si le coup est le même que le précédent.
+         */
+        this.compareCoup = function (positionStartLine, positionStartColumn, positionEndLine, positionEndColumn, nbPions) {
             if (positionEndLine == lastCoup.startLine && positionEndColumn == lastCoup.startColumn && positionStartLine == lastCoup.endLine
                 && positionStartColumn == lastCoup.endColumn && nbPions == lastCoup.nbPions) {
                 console.log("TRUE")
+                return true
+            } else {
+                return false
             }
         }
 
